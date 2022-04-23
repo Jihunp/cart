@@ -1,3 +1,22 @@
-.col {
-    background-color: red;
+.box-container {
+padding: 20px;
+}
+
+.box {
+    display: flex;
+    margin: 20px;
+}
+.card {
+    padding: 20px
+}
+.product {
+    display: flex;
+}
+.product-text {
+    background-color: purple;
+    color:black
+}
+.blueberry {
+    height: 250px;
+    width: 200px;
 }
