@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+<!-- enables us to use static images -->
+{% load static %}
+
 {% block content %}
     <h1>testing store</h1>
+
+    <h3> Put this in the credits page</h3>
+    <a href="https://www.flaticon.com/free-icons/smart-cart" title="smart cart icons">Smart cart icons created by Freepik - Flaticon</a>
+    <img src="{% static 'images/cart.png' %}">
+
 {% endblock content%}
