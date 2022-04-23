@@ -63,6 +63,28 @@
     display: block;
 }
 
+/* cart details */
+.login-cart {
+    float: right
+}
+.cart-icon {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+#cart-total {
+    background-color: red;
+    margin-right: 10px;
+    float: right;
+    text-align: center;
+    color: white;
+    width: 12px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 12px;
+    z-index: 12;
+}
+
 /* nav everything */
 .nav-container {
     padding: 10px;
@@ -76,8 +98,4 @@
 .nav-list {
     text-decoration: none;
     color: aqua;
-}
-.cart-icon {
-    height: 30px;
-    width: 30px;
 }
