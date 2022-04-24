@@ -21,6 +21,36 @@ padding: 20px;
     width: 200px;
 }
 
-.shop-btn {
-    
+/* checkout page */
+h4 {
+    font-weight: 300;
+    color: #525252
 }
+strong {
+    font-weight: 900;
+}
+.check {
+    float: right;
+    margin: 5px;
+}
+.cart-row {
+    display: flex;
+    align-items: flex-stretch;
+    padding: 10px;
+}
+.cart-img {
+    height: 50px;
+    width: 50px;
+}
+.item-qty {
+    display: inline-block;
+    font-weight: 800;
+    padding-right: 10px;
+}
+.qty {
+    display: block;
+}
+/*
+.line {
+    display: inline;
+} */

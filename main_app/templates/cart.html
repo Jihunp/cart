@@ -1,4 +1,46 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>testing cart</h1>
+<div>
+    <div>
+        <div>
+            <a href="/" class="shop-btn">Continue Shopping</a>
+        
+            <br>
+            <table>
+                <tr>
+                    <th><h4>Items: <strong>4</strong></h4></th>
+                    <th><h4>Total: <strong>35</strong></h4></th>
+                    <tr>
+                        <a href="{% url 'checkout' %}" class="check">checkout</a>
+                    </tr>
+                </tr>
+            </table>
+        </div>
+
+    <br>
+    <div class="box-element">
+        <div class="cart-row">
+            <div style="flex:2"></div>
+            <div style="flex:2">Item</div>
+            <div style="flex:1">Price</div>
+            <div style="flex:1">Quantity</div>
+            <div style="flex:1">Total</div>
+        </div>
+        <div class="cart-row">
+            <div style="flex:2"><img class="cart-img" src="{% static 'images/blueberry.jpeg' %}"></div>
+            <div style="flex:2">Product 1</div>
+            <div style="flex:1">$10</div>
+            <div style="flex:1">
+                <p class="item-qty">3</p>   
+                <div class="item-qty">
+                    <i class="qty fa fa-caret-up"></i>
+                    <i class="qty fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div style="flex:1">$30</div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock content%}
