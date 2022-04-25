@@ -50,7 +50,22 @@ strong {
 .qty {
     display: block;
 }
-/*
-.line {
-    display: inline;
-} */
+
+/* checkout html */
+
+.form-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: black solid;
+}
+.checkout-form {
+    padding: 30px;
+}
+.form-back {
+    padding: auto;
+    margin: 5%;
+    border: solid black;
+}
+/* checkout-form1 id */
+/* checkout-form2 id */

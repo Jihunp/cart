@@ -1,5 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>this is checkout</h1>
+
+<div>
+    <div>
+        <div>
+            <div>
+                <div class="form-info">
+                    <div class="form-back">
+                        <form id="checkout-form1" class="checkout-form">
+                            <div id="user-info">
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="name" placeholder="Name..">
+                                </div>
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="email" placeholder="Email..">
+                                </div>
+                            </div>
+                            <div id="shipping-info">
+                                <hr>
+                                <p>Shipping Information: </p>
+                                <hr>
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="address" placeholder="Address..">
+                                </div>
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="city" placeholder="City..">
+                                </div>
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="state" placeholder="State..">
+                                </div>
+                                <div class="formula">
+                                    <input class="form-control" type="text" name ="zipcode" placeholder="Zip code..">
+                                </div>
+                            </div>
+                            <hr>
+                            <input id="form-button" type="submit" value="Continue">
+                        </form>
+                    </div>
+                    <div class="form-back">
+                        <form id="checkout-form2" class="checkout-form">
+                            <div>
+                                <a href="{% url 'cart' %}">Back to Cart</a>
+                                <hr>
+                                <h3>Order Summary</h3>
+                                <br>
+                                <div>
+                                    <small>Other payment options</small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content%}
