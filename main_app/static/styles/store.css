@@ -63,9 +63,30 @@ strong {
     padding: 30px;
 }
 .form-back {
-    padding: auto;
-    margin: 5%;
+    margin: 50px;
     border: solid black;
+    background-color: blue;
+    z-index: 2;
 }
+/* #order-sum-container {
+    display: inline-block;
+} */
+.cart-row {
+    display: flex;
+}
+.product-img {
+    height: 40px;
+    width: 40px;
+}
+#checkout-mg {
+    height: 40px;
+    width: 40px;
+}
+
+/* #checkout-form2 {
+    background-color: blue;
+    display: flex;
+    margin: 0;
+} */
 /* checkout-form1 id */
 /* checkout-form2 id */

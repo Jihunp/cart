@@ -40,11 +40,24 @@
                     </div>
                     <div class="form-back">
                         <form id="checkout-form2" class="checkout-form">
-                            <div>
+                            <div id="total-container">
                                 <a href="{% url 'cart' %}">Back to Cart</a>
                                 <hr>
                                 <h3>Order Summary</h3>
                                 <br>
+                                <div class="cart-row" id="order-sum-container">
+                                    <div id="checkout-img" style="flex:2">
+                                        <!-- <img class="product-img" src="{% static 'images/blueberry.jpeg' %}"> -->
+                                        <p>Products are here</p>
+                                    </div>
+                                    <div style="flex:2"><p>Product 1</p></div>
+                                    <div style="flex:1"><p>$30</p></div>
+                                    <div style="flex:1"><p>x3</p></div>
+                                </div>
+                                <div id="item-total">
+                                    <h4>Items: 3</h4>
+                                    <h4>Total: $30</h4>
+                                </div>
                                 <div>
                                     <small>Other payment options</small>
                                 </div>
