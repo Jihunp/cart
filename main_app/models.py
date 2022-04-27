@@ -55,3 +55,10 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=250, null=True)
+    email = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.name
