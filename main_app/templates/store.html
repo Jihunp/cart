@@ -9,7 +9,7 @@
         {% for product in products %}
         <div class="product-container-col">
             <div class="product">
-                <img class="blueberry" src="{% static 'images/blueberry.jpeg' %}">
+                <img class="blueberry" src="{{product.image.url}}">
                 <div class="product-text">
                     <h5>{{product.name}}</h5>
                     <p>{{product.description}}</p>
