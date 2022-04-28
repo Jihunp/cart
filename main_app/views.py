@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import ShippingAddress, User, Customer, Product, Order, OrderItem, ShippingAddress
 
 
 def store(request):
