@@ -9,7 +9,8 @@
         {% for product in products %}
         <div class="product-container-col">
             <div class="product">
-                <img class="blueberry" src="{{product.image.url}}">
+                <!-- this is defined as a function property in models as self.image.url in Product class -->
+                <img class="blueberry" src="{{product.imageURL}}">
                 <div class="product-text">
                     <h5>{{product.name}}</h5>
                     <p>{{product.description}}</p>

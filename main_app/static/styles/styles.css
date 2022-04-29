@@ -67,8 +67,10 @@
 .login-cart {
     float: right
 }
+.cart-icon-container {
+    display: flex;
+}
 .cart-icon {
-    display: inline-block;
     height: 20px;
     width: 20px;
 }
