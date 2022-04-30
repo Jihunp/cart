@@ -9,8 +9,8 @@
             <br>
             <table>
                 <tr>
-                    <th><h4>Items: <strong>4</strong></h4></th>
-                    <th><h4>Total: <strong>35</strong></h4></th>
+                    <th><h4>Items: <strong>{{order.get_cart_items}}</strong></h4></th>
+                    <th><h4>Total: <strong>{{order.get_cart_total}}</strong></h4></th>
                     <tr>
                         <a href="{% url 'checkout' %}" class="check">checkout</a>
                     </tr>
