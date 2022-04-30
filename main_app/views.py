@@ -16,7 +16,7 @@ def cart(request):
     else:
         # empty list for now but will be updated in the future
         items = []
-    context ={'items':items}
+    context ={'items':items, 'order': order}
     return render(request, 'cart.html', context)
 
 def checkout(request):
