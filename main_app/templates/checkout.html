@@ -47,10 +47,10 @@
                                 <br>
                                 {% for item in items %}
                                 <div class="cart-row" id="order-sum-container">
-                                    <div class="cart-item" style="flex:2"><img class="cart-img" src="{{item.product.imageURL}}"></div>
-                                    <div class="cart-item" style="flex:2"><p>{{item.product.name}}</p></div>
-                                    <div class="cart-item" style="flex:1"><p>${{item.product.price}}</p></div>
-                                    <div class="cart-item" style="flex:1"><p>h{{item.quantity}}</p></div>
+                                    <div class="cart-item"><img class="cart-img" src="{{item.product.imageURL}}"></div>
+                                    <div class="cart-item"><p>{{item.product.name}}</p></div>
+                                    <div class="cart-item"><span class="price-text"><p>${{item.product.price}}</p></span></div>
+                                    <div class="cart-item"><span class="price-text"><p>X{{item.quantity}}</p></span></div>
                                 </div>
                                 {% endfor %}
                                 <div id="item-total">

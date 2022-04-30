@@ -10,12 +10,12 @@
         <div class="product-container-col">
             <div class="product">
                 <!-- this is defined as a function property in models as self.image.url in Product class -->
-                <img class="blueberry" src="{{product.imageURL}}">
+                <img class="blue-picture" src="{{product.imageURL}}">
                 <div class="product-text">
                     <h5>{{product.name}}</h5>
                     <p>{{product.description}}</p>
                     <button>View</button>
-                    <button>Add to Cart</button>
+                    <button data-product="{{product.id}}" data-clicker="add" class="cart-update" >Add to Cart</button>
                     <h5>${{product.price}}</h5>
                 </div>
             </div>
