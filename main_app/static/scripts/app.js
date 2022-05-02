@@ -13,13 +13,14 @@ for (let i = 0; i < updateBtns.length; i++) {
         if (user === 'AnonymousUser') {
             console.log('User has no authentification')
         } else {
+            UserOrderUpdate(productId, action)
             console.log('User is successfully authenticated')
         }
     })
 }
 
 function UserOrderUpdate(productId, action) {
-    console.log('User is successfully authenticated')
+    console.log('User is successfully authenticated and data is sending')
 
     let url = '/update_item/'
 
@@ -27,15 +28,16 @@ function UserOrderUpdate(productId, action) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Accept' : 'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({ 'productId': productId, 'action': action })
+        body:JSON.stringify({ 'productId': productId, 'action': action })
     })
-        .then((response) => {
-            return response.json()
-        })
+    .then((response) => {
+        return response.json()
+    })
 
-        .then((data) => {
-            console.log('data:', data)
-        })
+    .then((data) => {
+        console.log('data:', data)
+    })
 }
