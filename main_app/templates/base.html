@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     <link rel="stylesheet" href="{% static 'styles/store.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="{% static 'scripts/app.js' %}" defer></script>
     <script type="text/javascript">
         let user = '{{request.user}}'
-        // django 
+        // django get csrf toekn
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -61,6 +60,7 @@
 
         {% endblock %}
     </div>
+    <script type="text/javascript" src="{% static 'scripts/app.js' %}" defer></script>
 </body>
 
 </html>
