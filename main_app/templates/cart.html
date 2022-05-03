@@ -35,8 +35,12 @@
             <div style="flex:1">
                 <p class="item-qty">{{item.quantity}}</p>   
                 <div class="item-qty">
-                    <i class="qty fa fa-caret-up"></i>
-                    <i class="qty fa fa-caret-down"></i>
+                    <button data-product={{item.product.id}} data-action="add" class="cart-updated">
+                        <i class="qty fa fa-caret-up cart-updated"></i>
+                    </button>
+                    <button data-product= {{item.product.id}} data-action="remove" class="cart-updated">
+                        <i class="qty fa fa-caret-down cart-updated"></i>
+                    </button>
                 </div>
             </div>
             <div style="flex:1">${{item.get_total}}</div>

@@ -17,7 +17,7 @@
                                     <input class="form-control" type="text" name ="email" placeholder="Email..">
                                 </div>
                             </div>
-                            <div id="shipping-info">
+                            <div id="ship-info">
                                 <hr>
                                 <p>Shipping Information: </p>
                                 <hr>
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <input id="form-button" type="submit" value="Continue">
+                            <button>Continue</button>
                         </form>
                     </div>
                     <div class="form-back">
@@ -58,7 +58,7 @@
                                     <h4>Total: ${{order.get_cart_total}}</h4>
                                 </div>
                                 <div>
-                                    <small>Other payment options</small>
+                                    <button id="user-pay">Finalize Transaction</button>
                                 </div>
                             </div>
                         </form>
@@ -68,5 +68,28 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    let ship = '{{order.ship}}'
+    if(ship === 'False'){
+        document.getElementById("ship-info").innerHTML = ''
+    }
+    const form = document.getElementById('checkout-form1')
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('form data is sent')
+    })
+// if user is already logged in don't show log in form
+    if (user != 'AnonymousUser'){
+        document.getElementById('user-info').innerHTML = ''
+    }
+
+    document.getElementById('user-pay').addEventListener('click', function(e){
+        sendFormData()
+    })
+    function sendFormData(){
+        console.log('CLICK PAY')
+    }
+</script>
 
 {% endblock content%}

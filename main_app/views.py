@@ -16,7 +16,7 @@ def store(request):
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False}
         userItem = order['get_cart_items']
 
     products = Product.objects.all()
@@ -29,15 +29,16 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
-        userItems = order.get_cart_items
+        userItem = order.get_cart_items
+
     else:
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        userItems = order['get_cart_items']
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False}
+        userItem = order['get_cart_items']
 
-    context ={'items':items, 'order': order}
+    context ={'items':items, 'order': order, 'userItem': userItem}
     return render(request, 'cart.html', context)
 
 def checkout(request):
@@ -45,14 +46,15 @@ def checkout(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        userItem = order.get_cart_items
     else:
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        userItems = order['get_cart_items']
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False }
+        userItem = order['get_cart_items']
 
-    context ={'items':items, 'order': order}
+    context ={'items':items, 'order': order, "userItem": userItem}
     return render(request, 'checkout.html', context)
 
 def updateItem(request):
