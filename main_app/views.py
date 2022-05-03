@@ -6,8 +6,21 @@ import json
 
 
 def store(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        # get cart items is also listed inside models as a function
+        userItem = order.get_cart_items
+    else:
+        # empty list for now but will be updated in the future
+        items = []
+        # unregistered user will not see anything for now
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        userItem = order['get_cart_items']
+
     products = Product.objects.all()
-    context ={'products': products}
+    context ={'products': products, 'userItem': userItem}
     return render(request, 'store.html', context)
 
 def cart(request):
@@ -58,7 +71,7 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity - 1)
     orderItem.save()
 
-    if orderItem.quanity <= 0:
+    if orderItem.quantity <= 0:
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)

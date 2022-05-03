@@ -28,16 +28,21 @@ function UserOrderUpdate(productId, action) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept' : 'application/json',
             'X-CSRFToken': csrftoken,
         },
         body:JSON.stringify({ 'productId': productId, 'action': action })
     })
     .then((response) => {
         return response.json()
+        // error handling catch error and paste error
+    }).catch(e => {
+        console.log(e)
     })
 
     .then((data) => {
         console.log('data:', data)
+        // location.reload()
+    }).catch(e => {
+        console.log(e)
     })
 }
