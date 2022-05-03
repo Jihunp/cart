@@ -16,6 +16,7 @@ import os
 import socket
 import psycopg2
 import dj_database_url
+import django_heroku
 #serving static files through whitenoise
 
 
