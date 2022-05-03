@@ -1,3 +1,4 @@
+from ctypes import addressof
 from itertools import product
 from django.shortcuts import render
 from .models import ShippingAddress, User, Customer, Product, Order, OrderItem, ShippingAddress
@@ -85,7 +86,33 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 def processOrder(request):
-    print('data:', request.body)
+    transaction_id = datetime.datetime.now().timestamp()
+    # parse and access json data
+    data = json.loads(request.body)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+        if total == order.get_cart_total:
+            order.complete = True
+        order.save()
+        
+        if order.ship == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['ship']['address'],
+                city=data['ship']['city'],
+                state=data['ship']['state'],
+                zipcode=data['ship']['zipcode'],
+
+            )
+
+
+    else:
+        print('User needs to be logged in')
     return JsonResponse('Payment complete!', safe=False)
 
 # adding a line to test heroku deployment
