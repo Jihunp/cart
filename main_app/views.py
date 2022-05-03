@@ -2,6 +2,7 @@ from itertools import product
 from django.shortcuts import render
 from .models import ShippingAddress, User, Customer, Product, Order, OrderItem, ShippingAddress
 from django.http import JsonResponse
+import datetime
 import json
 
 
@@ -82,5 +83,9 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    print('data:', request.body)
+    return JsonResponse('Payment complete!', safe=False)
 
 # adding a line to test heroku deployment
