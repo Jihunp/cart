@@ -1,2 +1,2 @@
-web: gunicorn djangocats.wsgi:application --log-file - --log-level debug
+web: gunicorn djangocart.wsgi:application --log-file - --log-level debug
 release: python manage.py migrate
