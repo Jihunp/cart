@@ -1,7 +1,9 @@
+from ctypes import addressof
 from itertools import product
 from django.shortcuts import render
 from .models import ShippingAddress, User, Customer, Product, Order, OrderItem, ShippingAddress
 from django.http import JsonResponse
+import datetime
 import json
 
 
@@ -16,7 +18,7 @@ def store(request):
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False}
         userItem = order['get_cart_items']
 
     products = Product.objects.all()
@@ -29,15 +31,16 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
-        userItems = order.get_cart_items
+        userItem = order.get_cart_items
+
     else:
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        userItems = order['get_cart_items']
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False}
+        userItem = order['get_cart_items']
 
-    context ={'items':items, 'order': order}
+    context ={'items':items, 'order': order, 'userItem': userItem}
     return render(request, 'cart.html', context)
 
 def checkout(request):
@@ -45,14 +48,15 @@ def checkout(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
+        userItem = order.get_cart_items
     else:
         # empty list for now but will be updated in the future
         items = []
         # unregistered user will not see anything for now
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        userItems = order['get_cart_items']
+        order = {'get_cart_total': 0, 'get_cart_items': 0, 'ship': False }
+        userItem = order['get_cart_items']
 
-    context ={'items':items, 'order': order}
+    context ={'items':items, 'order': order, "userItem": userItem}
     return render(request, 'checkout.html', context)
 
 def updateItem(request):
@@ -80,3 +84,35 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    # parse and access json data
+    data = json.loads(request.body)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+        if total == order.get_cart_total:
+            order.complete = True
+        order.save()
+        
+        if order.ship == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['ship']['address'],
+                city=data['ship']['city'],
+                state=data['ship']['state'],
+                zipcode=data['ship']['zipcode'],
+
+            )
+
+
+    else:
+        print('User needs to be logged in')
+    return JsonResponse('Payment complete!', safe=False)
+
+# adding a line to test heroku deployment

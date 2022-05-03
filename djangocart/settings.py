@@ -16,7 +16,6 @@ import os
 import socket
 import psycopg2
 import dj_database_url
-#serving static files through whitenoise
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -51,8 +50,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
 
 ALLOWED_HOSTS = [
     'https://cartyparty.herokuapp.com/', 
@@ -161,7 +158,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_DIRS = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/static/images')
 MEDIA_URL = '/images/'

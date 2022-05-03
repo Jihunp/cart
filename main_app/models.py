@@ -13,6 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=250, null=True)
     price = models.FloatField()
     description = models.CharField(max_length=250)
+    tangible = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
     
     def __str__(self):
@@ -34,6 +35,15 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    @property
+    def ship(self):
+        ship = False
+        orderitems = self.orderitem_set.all()
+        for i in orderitems:
+            if i.product.tangible == False:
+                ship = True
+        return ship
 
     @property
     def get_cart_total(self):
