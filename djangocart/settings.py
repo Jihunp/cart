@@ -16,7 +16,6 @@ import os
 import socket
 import psycopg2
 import dj_database_url
-import django_heroku
 #serving static files through whitenoise
 
 
@@ -163,8 +162,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 STATIC_URL = '/static/'
 STATIC_DIRS = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/static/images')
 MEDIA_URL = '/images/'
@@ -175,5 +172,3 @@ MEDIA_URL = '/images/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-
-django_heroku.settings(locals())
