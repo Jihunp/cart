@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-<!-- enables us to use static images -->
 {% load static %}
 
-{% block content %}
+{%block context%}
 
 <div class="box-container">
     <div class="product-container-row">
@@ -10,12 +9,14 @@
         <div class="product-container-col">
             <div class="product">
                 <!-- this is defined as a function property in models as self.image.url in Product class -->
-                <img class="blue-picture" src="{{product.imageURL}}">
+                <a href="{% url 'product_detail' product.pk %}">
+                    <img class="blue-picture" src="{{product.imageURL}}">
+                </a>
                 <div class="product-text">
                     <h5>{{product.name}}</h5>
                     <p>{{product.description}}</p>
-                    <button class="button-king" >View</button>
-                    <button data-product={{product.id}} data-action="add" class="cart-updated button-king">Add to Cart</button>
+                    <button >View</button>
+                    <button data-product={{product.id}} data-action="add" class="cart-updated">Add to Cart</button>
                     <h5>${{product.price}}</h5>
                 </div>
             </div>
@@ -23,10 +24,4 @@
         {% endfor %}
     </div>
 </div>
-
-<div class="credits">
-    <h3> Credits to: </h3>
-    <p>prathkum https://codepen.io/prathkum/pen/JjbjEwR</p>
-    <a href="https://www.flaticon.com/free-icons/smart-cart" title="smart cart icons">Smart cart icons created by Freepik - Flaticon</a>
-</div>
-{% endblock content%}
+{% endblock %}

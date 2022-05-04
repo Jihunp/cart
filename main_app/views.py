@@ -5,6 +5,59 @@ from .models import ShippingAddress, User, Customer, Product, Order, OrderItem, 
 from django.http import JsonResponse
 import datetime
 import json
+# for crud functionality
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
+
+# crud for products
+# icebox feature so in the future only admin user can have access to create and update items
+class ProductList(TemplateView):
+    template_name = 'store.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["product"] = Product.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["product"] = Product.objects.all()
+            context["header"] = "product"
+        return context
+
+class ProductCreate(CreateView):
+    model = Product
+    fields = '__all__'
+    # fields = ['name', 'price', 'description', 'tangible', 'image']
+    template_name = 'product_create.html'
+    def get_success_url(self):
+        return reverse('product_detail', kwargs={'pk': self.object.pk})
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/product')
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = "product_detail.html"
+
+
+class ProductUpdate(UpdateView):
+    model = Product
+    # fields = ['name', 'price', 'description', 'tangible', 'image']
+    fields = '__all__'
+    template_name = "product_update.html"
+    def get_success_url(self):
+        return reverse('product_detail', kwargs={'pk': self.object.pk})
+
+class ProductDelete(DeleteView):
+    model = Product
+    template_name = "product_delete_confirm.html"
+    success_url = "/product"
 
 
 def store(request):

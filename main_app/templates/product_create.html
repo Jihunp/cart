@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="content">
+        <span class="text">Create New Product</span>
+        <p>
+        <form class="centered-text" method="post">
+            <!-- security token -->
+            {% csrf_token %}
+            <table>{{form.as_table}}</table>
+            <input class="inp" type="submit" value="Submit" />
+        </form>
+        </p>
+    </div>
+    <div class="flap"></div>
+</div>
+
+{% endblock %}
