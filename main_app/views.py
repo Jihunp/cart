@@ -184,7 +184,7 @@ def register(request):
             user = form.save_login()
             login(request, user)
             messages.success(request, 'Account Created')
-            return HttpResponseRedirect('/user/'+str(user))
+            return HttpResponseRedirect('/')
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -192,7 +192,7 @@ def register(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/activities')
+    return HttpResponseRedirect('/')
 
 def login_view(request):
     if request.method == 'POST':
