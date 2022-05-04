@@ -4,7 +4,8 @@
 The purpose of this app is to help business owners increase their effectiveness in advertising their items. The application is focused on  With this app users will be able to easily create additional new items and add them to the roster of items that customers can purchase. With the use of Django, python, and postgresql we have a dyanmic e-commerce website to increase customer outreach through a highly mobile-accessible website. 
 
 # ERD (entity Data Relationship)
-![image](https://user-images.githubusercontent.com/92244135/163695508-6eee99c9-b7bd-455b-b0ad-0b4e16749711.png)
+![image](https://user-images.githubusercontent.com/92244135/166613826-32b84ddf-c2f0-4035-ab99-1739092c45d2.png)
+
 
 # Wireframe
 ![image](https://user-images.githubusercontent.com/92244135/163692541-2b67dc19-5ea0-4743-b069-42dd458771d8.png)
@@ -32,3 +33,6 @@ As a User I want to...
 - django
 - python
 - postgres
+- heroku
+- whitenoise
+- Pillow
