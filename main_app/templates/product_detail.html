@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{product.name}}</h1>
+    <div>
+        <h3>: {{product.price}}</h3>
+        <h3>: {{product.description}}</h3>
+        <h3>: {{product.tangible}}</h3>
+    </div>
+    <div>
+        <a href="{% url 'product_update' product.pk %}">Update</a>
+        <a href="{% url 'product_delete' product.pk %}">Delete</a>
+    </div>
+
+{% endblock %}

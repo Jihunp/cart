@@ -4,16 +4,18 @@
 <div>
     <div>
         <div>
-            <a href="/" class="shop-btn">Continue Shopping</a>
+            <button class="shop-btn button-king">
+                <a href="/" class="shop-btn clean">Continue Shopping</a>
+            </button>
+            <button class="check button-king">
+                <a href="{% url 'checkout' %}" class="check clean">checkout</a>
+            </button>
         
             <br>
             <table>
                 <tr>
                     <th><h4>Items: <strong>{{order.get_cart_items}}</strong></h4></th>
                     <th><h4>Total: <strong>{{order.get_cart_total}}</strong></h4></th>
-                    <tr>
-                        <a href="{% url 'checkout' %}" class="check">checkout</a>
-                    </tr>
                 </tr>
             </table>
         </div>
