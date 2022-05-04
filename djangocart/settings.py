@@ -22,7 +22,6 @@ import dj_database_url
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
-
 # If the host name starts with 'live', DJANGO_HOST = "production"
 if socket.gethostname().startswith('live'):
     DJANGO_HOST = "production"

@@ -12,4 +12,7 @@ urlpatterns = [
     path('product/<int:pk>/', views.ProductDetail.as_view(), name="product_detail"),
     path('product/<int:pk>/update', views.ProductUpdate.as_view(), name="product_update"),
     path('product/<int:pk>/delete', views.ProductDelete.as_view(), name="product_delete"),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register, name='register'),
 ]

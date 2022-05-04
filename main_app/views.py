@@ -12,6 +12,13 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
+#auth
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .forms import CustomUserCreationForm
+
 # crud for products
 # icebox feature so in the future only admin user can have access to create and update items
 class ProductList(TemplateView):
@@ -116,6 +123,7 @@ def updateItem(request):
     # post request
     data = json.loads(request.body)
     productId = data['productId']
+
     action = data['action']
 
     print('action:', action)
@@ -168,4 +176,41 @@ def processOrder(request):
         print('User needs to be logged in')
     return JsonResponse('Payment complete!', safe=False)
 
-# adding a line to test heroku deployment
+# authentification
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save_login()
+            login(request, user)
+            messages.success(request, 'Account Created')
+            return HttpResponseRedirect('/user/'+str(user))
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/activities')
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            usr = form.cleaned_data['username']
+            pas = form.cleaned_data['password']
+            user = authenticate(username = usr, password = pas)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
+                else:
+                    return render(request, 'login.html', {'form': form})
+            else:
+                return render(request, 'login.html', {'form': form})
+        else:
+            return render(request,'register.html', {'form': form}) 
+    else:
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
